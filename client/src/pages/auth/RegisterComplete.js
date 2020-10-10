@@ -12,12 +12,38 @@ function RegisterComplete({ history }) {
   //
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    // validation
+
+    if (!email || !password) {
+      toast.error("Email and Password is Required");
+      return;
+    }
+    if (password.length < 6) {
+      toast.error("Password  Must be 6 chars");
+      return;
+    }
+
     try {
       const result = await auth.signInWithEmailLink(
         email,
         window.location.href
       );
-      console.log(result);
+      if (result.user.emailVerified) {
+        // rm useremail from localstorage
+        window.localStorage.removeItem("emailForRegistration");
+        // get user id token
+        let user = auth.currentUser;
+        await user.updatePassword(password);
+        const idTokenResult = await user.getIdTokenResult();
+
+        // redux store config
+        console.log(user, "-user", idTokenResult, "-idtoken");
+        // redirect
+
+        history.push("/");
+      }
+      //   console.log(result);
     } catch (error) {
       toast.error(error.code);
     }
@@ -40,7 +66,6 @@ function RegisterComplete({ history }) {
         value={password}
         onChange={(e) => setPassword(e.target.value)}
         autoFocus
-        required
       />
       <button type='submit' className='btn btn-raised mt-3'>
         Submit
