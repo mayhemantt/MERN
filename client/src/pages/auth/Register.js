@@ -10,6 +10,7 @@ function Register() {
       url: "http://localhost:3000/register/complete",
       handleCodeInApp: true,
     };
+
     await auth.sendSignInLinkToEmail(email, config);
     toast.success(`Email is sent to ${email}`);
     // save user email to local storage
