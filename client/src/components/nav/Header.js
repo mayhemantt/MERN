@@ -11,12 +11,14 @@ import {
 } from "@ant-design/icons";
 import { Link } from "react-router-dom";
 import firebase from "firebase";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
+
 const { SubMenu } = Menu;
 
 const Header = () => {
   const dispatch = useDispatch();
+  let { user } = useSelector((state) => ({ ...state }));
   let history = useHistory();
   const [current, setCurrent] = useState("home");
 
@@ -38,24 +40,34 @@ const Header = () => {
         <Link to='/'>Home</Link>
       </Menu.Item>
 
-      <SubMenu key='SubMenu' icon={<SettingOutlined />} title='Username'>
-        <Menu.Item key='setting:1'>Option 1</Menu.Item>
-        <Menu.Item key='setting:2'>Option 2</Menu.Item>
-        <Menu.Item icon={<LoginOutlined />} onClick={logout}>
-          Logout
+      {user && (
+        <SubMenu
+          key='SubMenu'
+          icon={<SettingOutlined />}
+          title={user.email && user.email.split("@")[0]}
+          className='float-right'>
+          <Menu.Item key='setting:1'>Option 1</Menu.Item>
+          <Menu.Item key='setting:2'>Option 2</Menu.Item>
+          <Menu.Item icon={<LoginOutlined />} onClick={logout}>
+            Logout
+          </Menu.Item>
+        </SubMenu>
+      )}
+
+      {!user && (
+        <Menu.Item key='login' icon={<UserOutlined />} className='float-right'>
+          <Link to='/login'>Login</Link>
         </Menu.Item>
-      </SubMenu>
+      )}
 
-      <Menu.Item key='login' icon={<UserOutlined />} className='float-right'>
-        <Link to='/login'>Login</Link>
-      </Menu.Item>
-
-      <Menu.Item
-        key='register'
-        icon={<UserAddOutlined />}
-        className='float-right'>
-        <Link to='/register'>Register</Link>
-      </Menu.Item>
+      {!user && (
+        <Menu.Item
+          key='register'
+          icon={<UserAddOutlined />}
+          className='float-right'>
+          <Link to='/register'>Register</Link>
+        </Menu.Item>
+      )}
     </Menu>
   );
 };
