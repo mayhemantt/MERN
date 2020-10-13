@@ -7,20 +7,8 @@ import { Button } from "antd";
 import { MailOutlined, GoogleOutlined } from "@ant-design/icons";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import axios from "axios";
 
-const createOrUpdateUser = async (authToken) => {
-  // console.log(authToken, "Auth Token");
-  return await axios.post(
-    `${process.env.REACT_APP_API}/create-update-user`,
-    {},
-    {
-      headers: {
-        authToken,
-      },
-    }
-  );
-};
+import { createOrUpdateUser } from "../../functions/auth";
 
 function Login({ history }) {
   const [email, setEmail] = useState("");
@@ -36,6 +24,14 @@ function Login({ history }) {
     }
   }, [user]);
 
+  const roleBasedRedirect = (res) => {
+    if (res.data.role === "admin") {
+      history.push("/admin/dashboard");
+    } else {
+      history.push("/user/history");
+    }
+  };
+
   const googleLogin = async () => {
     try {
       const result = await auth.signInWithPopup(googleAuthProvider);
@@ -43,18 +39,20 @@ function Login({ history }) {
       const { user } = result;
       const idTokenResult = await user.getIdTokenResult();
 
-      createOrUpdateUser(idTokenResult.token)
-        .then((res) => console.log(res, "Create update user"))
-        .catch((err) => console.log(err));
-
-      // dispatch({
-      //   type: "LOGGED_IN_USER",
-      //   payload: {
-      //     email: user.email,
-      //     token: idTokenResult.token,
-      //   },
-      // });
-      // history.push("/");
+      await createOrUpdateUser(idTokenResult.token).then((res) => {
+        dispatch({
+          type: "LOGGED_IN_USER",
+          payload: {
+            name: res.data.name,
+            role: res.data.role,
+            _id: res.data._id,
+            email: res.email,
+            token: idTokenResult.token,
+          },
+        });
+        // history.push("/");
+        roleBasedRedirect(res);
+      });
     } catch (error) {
       console.log(error.message);
       toast.error(error.message);
@@ -72,16 +70,21 @@ function Login({ history }) {
       // console.log(idTokenResult, "------------");
 
       await createOrUpdateUser(idTokenResult.token)
-        .then((res) => console.log("Create update user"))
+        .then((res) => {
+          dispatch({
+            type: "LOGGED_IN_USER",
+            payload: {
+              name: res.data.name,
+              role: res.data.role,
+              _id: res.data._id,
+              email: res.email,
+              token: idTokenResult.token,
+            },
+          });
+          roleBasedRedirect(res);
+          // history.push("/");
+        })
         .catch((err) => console.log(err));
-      // dispatch({
-      //   type: "LOGGED_IN_USER",
-      //   payload: {
-      //     email: user.email,
-      //     token: idTokenResult.token,
-      //   },
-      // });
-      // history.push("/");
     } catch (error) {
       setLoading(false);
       console.log(error);
