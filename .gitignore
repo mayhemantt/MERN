@@ -21,3 +21,12 @@ node_modules
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+# config
+
+# -Firebase
+fbServiceAccountKey.json 
+ 
+
+#client Firebase
+firebase.js
