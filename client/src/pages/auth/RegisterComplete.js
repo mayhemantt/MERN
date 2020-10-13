@@ -15,7 +15,7 @@ function RegisterComplete({ history }) {
       history.push("/");
     }
     setEmail(window.localStorage.getItem("emailForRegistration"));
-  }, [user]);
+  }, [user, history]);
   //
   const handleSubmit = async (e) => {
     e.preventDefault();

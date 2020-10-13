@@ -14,7 +14,7 @@ function Register({ history }) {
     if (user && user.token) {
       history.push("/");
     }
-  }, [user]);
+  }, [user, history]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -35,26 +35,26 @@ function Register({ history }) {
   };
 
   const registerForm = () => (
-    <form className='mt-5' onSubmit={handleSubmit}>
+    <form className="mt-5" onSubmit={handleSubmit}>
       <input
-        placeholder='E Mail'
-        type='email'
-        className='form-control'
+        placeholder="E Mail"
+        type="email"
+        className="form-control"
         value={email}
         onChange={(e) => setEmail(e.target.value)}
         autoFocus
         required
       />
-      <button type='submit' className='btn btn-raised mt-3'>
+      <button type="submit" className="btn btn-raised mt-3">
         Register
       </button>
     </form>
   );
   return (
     <div>
-      <div className='container p-5'>
-        <div className='row'>
-          <div className='col-md-6 offset-md-3'>
+      <div className="container p-5">
+        <div className="row">
+          <div className="col-md-6 offset-md-3">
             <h4>Register</h4>
             {registerForm()}
           </div>

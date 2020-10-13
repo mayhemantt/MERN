@@ -14,7 +14,7 @@ const ForgotPassword = ({ history }) => {
     if (user && user.token) {
       history.push("/");
     }
-  }, [user]);
+  }, [user, history]);
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
@@ -36,23 +36,23 @@ const ForgotPassword = ({ history }) => {
   };
 
   return (
-    <div className='container col-md-6 offset-md-3 p-5'>
+    <div className="container col-md-6 offset-md-3 p-5">
       {loading ? (
-        <h4 className='text-primary'>Loading...</h4>
+        <h4 className="text-primary">Loading...</h4>
       ) : (
         <h4>Forgot Password</h4>
       )}
       <form onSubmit={handleSubmit}>
         <input
-          type='email'
-          placeholder='Type Your Email'
+          type="email"
+          placeholder="Type Your Email"
           required
           autoFocus
           value={email}
           onChange={(e) => setEmail(e.target.value)}
-          className='form-control'
+          className="form-control"
         />
-        <button className='btn btn-outline-primary mt-3' disabled={!email}>
+        <button className="btn btn-outline-primary mt-3" disabled={!email}>
           Submit
         </button>
       </form>
