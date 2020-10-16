@@ -27,7 +27,7 @@ import CategoryCreate from "./pages/admin/category/CategoryCreate";
 import { currentUser } from "./functions/auth";
 import AdminRoute from "./components/routes/AdminRoutes";
 import UpdateCategory from "./pages/admin/category/UpdateCategory";
-
+import SubCreate from "./pages/admin/sub/SubCreate";
 // render app
 const App = () => {
   const dispatch = useDispatch();
@@ -77,6 +77,7 @@ const App = () => {
           path="/admin/category/:slug"
           component={UpdateCategory}
         />
+        <AdminRoute exact path="/admin/sub" component={SubCreate} />
       </Switch>
     </React.Fragment>
   );
