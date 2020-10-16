@@ -19,13 +19,14 @@ import RegisterComplete from "./pages/auth/RegisterComplete";
 import ForgotPassword from "./pages/auth/ForgotPassword";
 import History from "./pages/user/History";
 import UserRoute from "./components/routes/UserRoute";
-
-//Methods
-import { currentUser } from "./functions/auth";
+import AdminDashboard from "./pages/admin/AdminDashboard";
 import Wishlist from "./pages/user/Wishlist";
 import Password from "./pages/user/Password";
+import CategoryCreate from "./pages/admin/category/CategoryCreate";
+//Methods
+import { currentUser } from "./functions/auth";
 import AdminRoute from "./components/routes/AdminRoutes";
-import AdminDashboard from "./pages/admin/AdminDashboard";
+import UpdateCategory from "./pages/admin/category/UpdateCategory";
 
 // render app
 const App = () => {
@@ -70,6 +71,12 @@ const App = () => {
         <UserRoute exact path="/user/wishlist" component={Wishlist} />
         <UserRoute exact path="/user/password" component={Password} />
         <AdminRoute exact path="/admin/dashboard" component={AdminDashboard} />
+        <AdminRoute exact path="/admin/category" component={CategoryCreate} />
+        <AdminRoute
+          exact
+          path="/admin/category/:slug"
+          component={UpdateCategory}
+        />
       </Switch>
     </React.Fragment>
   );

@@ -35,19 +35,27 @@ const Header = () => {
   };
 
   return (
-    <Menu onClick={handleClick} selectedKeys={[current]} mode='horizontal'>
-      <Menu.Item key='home' icon={<AppstoreOutlined />}>
-        <Link to='/'>Home</Link>
+    <Menu onClick={handleClick} selectedKeys={[current]} mode="horizontal">
+      <Menu.Item key="home" icon={<AppstoreOutlined />}>
+        <Link to="/">Home</Link>
       </Menu.Item>
 
       {user && (
         <SubMenu
-          key='SubMenu'
+          key="SubMenu"
           icon={<SettingOutlined />}
           title={user.email && user.email.split("@")[0]}
-          className='float-right'>
-          <Menu.Item key='setting:1'>Option 1</Menu.Item>
-          <Menu.Item key='setting:2'>Option 2</Menu.Item>
+          className="float-right">
+          {user && user.role === "subscriber" && (
+            <Menu.Item>
+              <Link to="/user/history">Dashboard</Link>
+            </Menu.Item>
+          )}
+          {user && user.role === "admin" && (
+            <Menu.Item>
+              <Link to="/admin/dashboard">Dashboard</Link>
+            </Menu.Item>
+          )}
           <Menu.Item icon={<LoginOutlined />} onClick={logout}>
             Logout
           </Menu.Item>
@@ -55,17 +63,17 @@ const Header = () => {
       )}
 
       {!user && (
-        <Menu.Item key='login' icon={<UserOutlined />} className='float-right'>
-          <Link to='/login'>Login</Link>
+        <Menu.Item key="login" icon={<UserOutlined />} className="float-right">
+          <Link to="/login">Login</Link>
         </Menu.Item>
       )}
 
       {!user && (
         <Menu.Item
-          key='register'
+          key="register"
           icon={<UserAddOutlined />}
-          className='float-right'>
-          <Link to='/register'>Register</Link>
+          className="float-right">
+          <Link to="/register">Register</Link>
         </Menu.Item>
       )}
     </Menu>
