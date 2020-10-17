@@ -78,11 +78,17 @@ function CategoryCreate() {
           <AdminNav />
         </div>
         <div className="col mt-5">
+          {loading ? (
+            <h4 className="text-danger">Loading..</h4>
+          ) : (
+            <h4>Create Sub Category</h4>
+          )}
           <CategoryForm
             handleSubmit={handleSubmit}
             name={name}
             setName={setName}
           />
+
           <div className="p-4">
             {categories.filter(searched(keyword)).map((c) => {
               return (

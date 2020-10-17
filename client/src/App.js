@@ -18,16 +18,17 @@ import Header from "./components/nav/Header";
 import RegisterComplete from "./pages/auth/RegisterComplete";
 import ForgotPassword from "./pages/auth/ForgotPassword";
 import History from "./pages/user/History";
-import UserRoute from "./components/routes/UserRoute";
 import AdminDashboard from "./pages/admin/AdminDashboard";
 import Wishlist from "./pages/user/Wishlist";
 import Password from "./pages/user/Password";
 import CategoryCreate from "./pages/admin/category/CategoryCreate";
+import UpdateCategory from "./pages/admin/category/UpdateCategory";
+import SubCreate from "./pages/admin/sub/SubCreate";
 //Methods
 import { currentUser } from "./functions/auth";
 import AdminRoute from "./components/routes/AdminRoutes";
-import UpdateCategory from "./pages/admin/category/UpdateCategory";
-import SubCreate from "./pages/admin/sub/SubCreate";
+import UserRoute from "./components/routes/UserRoute";
+import UpdateSub from "./pages/admin/sub/SubCatgeoryUpdate";
 // render app
 const App = () => {
   const dispatch = useDispatch();
@@ -78,6 +79,7 @@ const App = () => {
           component={UpdateCategory}
         />
         <AdminRoute exact path="/admin/sub" component={SubCreate} />
+        <AdminRoute exact path="/admin/sub/:slug" component={UpdateSub} />
       </Switch>
     </React.Fragment>
   );
