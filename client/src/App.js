@@ -24,6 +24,7 @@ import Password from "./pages/user/Password";
 import CategoryCreate from "./pages/admin/category/CategoryCreate";
 import UpdateCategory from "./pages/admin/category/UpdateCategory";
 import SubCreate from "./pages/admin/sub/SubCreate";
+import ProductCreate from "./pages/admin/product/ProductCreate";
 //Methods
 import { currentUser } from "./functions/auth";
 import AdminRoute from "./components/routes/AdminRoutes";
@@ -80,6 +81,7 @@ const App = () => {
         />
         <AdminRoute exact path="/admin/sub" component={SubCreate} />
         <AdminRoute exact path="/admin/sub/:slug" component={UpdateSub} />
+        <AdminRoute exact path="/admin/product" component={ProductCreate} />
       </Switch>
     </React.Fragment>
   );

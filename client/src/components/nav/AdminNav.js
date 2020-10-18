@@ -12,7 +12,7 @@ function AdminNav() {
         </li>
         <li className="nav-item">
           <Link className="nav-link" to="/admin/product">
-            Password
+            Product
           </Link>
         </li>
         <li className="nav-item">

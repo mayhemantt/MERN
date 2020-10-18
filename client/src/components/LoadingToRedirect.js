@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 
 function LoadingToRedirect() {
-  const [count, setCount] = useState(5);
+  const [count, setCount] = useState(8);
   let history = useHistory();
 
   useEffect(() => {
