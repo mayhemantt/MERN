@@ -7,6 +7,7 @@ const {
   update,
   remove,
   list,
+  getSubs,
 } = require("../controllers/Category");
 const { authCheck, adminCheck } = require("../middleware/auth");
 
@@ -15,5 +16,5 @@ router.get("/category/:slug", read);
 router.delete("/category/:slug", authCheck, adminCheck, remove);
 router.put("/category/:slug", authCheck, adminCheck, update);
 router.get("/categories", list);
-
+router.get("/category/subs/:_id", getSubs);
 module.exports = router;

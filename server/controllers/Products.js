@@ -11,6 +11,14 @@ exports.create = async (req, res) => {
     console.log("try end");
   } catch (err) {
     console.log(err, "catch");
-    res.json("Failed To Create Product").status(400);
+    // res.status(400).json("Failed To Create Product");
+    res.status(400).json({
+      err: err.message,
+    });
   }
+};
+
+exports.read = async (req, res) => {
+  let products = await Product.find({});
+  res.json(products);
 };
