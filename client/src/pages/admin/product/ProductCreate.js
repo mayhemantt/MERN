@@ -6,6 +6,8 @@ import { useSelector } from "react-redux";
 import { createProduct } from "../../../functions/product";
 import ProductForm from "../../../components/forms/ProductForm";
 import { getCategories, getCategorySubs } from "../../../functions/category";
+import FileUpload from "../../../components/forms/FileUpload";
+import { LoadingOutlined } from "@ant-design/icons";
 const initialState = {
   title: "",
   description: "",
@@ -27,6 +29,7 @@ const ProductCreate = () => {
   const [values, setValues] = useState(initialState);
   const [subOptions, setSubOptions] = useState([]);
   const [showSub, setShowSub] = useState(false);
+  const [loading, setLoading] = useState(false);
   useEffect(() => {
     loadCategories();
   }, []);
@@ -71,8 +74,20 @@ const ProductCreate = () => {
           <AdminNav />
         </div>
         <div className="col-md-10">
-          <h4>Product Create</h4>
+          {loading ? (
+            <LoadingOutlined className="text-danger h1" />
+          ) : (
+            <h4>Product Create</h4>
+          )}
           <hr />
+
+          <div className="p-3">
+            <FileUpload
+              values={values}
+              setValues={setValues}
+              setLoading={setLoading}
+            />
+          </div>
           <ProductForm
             handleChange={handleChange}
             handleSubmit={handleSubmit}

@@ -11,9 +11,10 @@
     "firebase": "^7.23.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
+    "react-image-file-resizer": "^0.3.8",
     "react-redux": "^7.2.1",
     "react-router-dom": "^5.2.0",
-    "react-scripts": "3.4.3",
+    "react-scripts": "^3.4.4",
     "react-toastify": "^6.0.9",
     "redux": "^4.0.5",
     "redux-devtools-extension": "^2.13.8"
