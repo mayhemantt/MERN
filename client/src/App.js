@@ -30,6 +30,8 @@ import { currentUser } from "./functions/auth";
 import AdminRoute from "./components/routes/AdminRoutes";
 import UserRoute from "./components/routes/UserRoute";
 import UpdateSub from "./pages/admin/sub/SubCatgeoryUpdate";
+import AllProducts from "./pages/admin/product/AllProducts";
+import ProductUpdate from "./pages/admin/product/ProductUpdate";
 // render app
 const App = () => {
   const dispatch = useDispatch();
@@ -82,6 +84,12 @@ const App = () => {
         <AdminRoute exact path="/admin/sub" component={SubCreate} />
         <AdminRoute exact path="/admin/sub/:slug" component={UpdateSub} />
         <AdminRoute exact path="/admin/product" component={ProductCreate} />
+        <AdminRoute exact path="/admin/products" component={AllProducts} />
+        <AdminRoute
+          exact
+          path="/admin/product/:slug"
+          component={ProductUpdate}
+        />
       </Switch>
     </React.Fragment>
   );
