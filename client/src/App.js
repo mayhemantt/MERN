@@ -32,6 +32,7 @@ import UserRoute from "./components/routes/UserRoute";
 import UpdateSub from "./pages/admin/sub/SubCatgeoryUpdate";
 import AllProducts from "./pages/admin/product/AllProducts";
 import ProductUpdate from "./pages/admin/product/ProductUpdate";
+import Product from "./pages/Product";
 // render app
 const App = () => {
   const dispatch = useDispatch();
@@ -90,6 +91,7 @@ const App = () => {
           path="/admin/product/:slug"
           component={ProductUpdate}
         />
+        <Route exact path="/product/:slug" component={Product} />
       </Switch>
     </React.Fragment>
   );
