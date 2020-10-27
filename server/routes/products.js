@@ -9,6 +9,7 @@ const {
   update,
   list,
   productsCount,
+  productStar,
 } = require("../controllers/Products");
 const { authCheck, adminCheck } = require("../middleware/auth");
 router.get("/products/total", productsCount);
@@ -19,4 +20,6 @@ router.get("/product/:slug", read);
 router.put("/product/:slug", authCheck, adminCheck, update);
 
 router.post("/products", list);
+
+router.put("/product/start/:productId", authCheck, productStar);
 module.exports = router;
