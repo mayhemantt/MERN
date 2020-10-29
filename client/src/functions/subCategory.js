@@ -1,5 +1,4 @@
 import axios from "axios";
-
 export const getSubs = async () => {
   return await axios.get(`${process.env.REACT_APP_API}/subCategory`);
 };
