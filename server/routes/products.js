@@ -11,6 +11,7 @@ const {
   productsCount,
   productStar,
   listRelated,
+  searchFilters,
 } = require("../controllers/Products");
 const { authCheck, adminCheck } = require("../middleware/auth");
 router.get("/products/total", productsCount);
@@ -24,4 +25,6 @@ router.post("/products", list);
 
 router.put("/product/star/:productId", authCheck, productStar);
 router.get("/product/related/:productId", listRelated);
+// search
+router.post("/search/filters", searchFilters);
 module.exports = router;
