@@ -37,6 +37,8 @@ import CategoryHome from "./pages/category/CategoryHome";
 import SubHome from "./pages/sub/SubHome";
 import Shop from "./pages/Shop";
 import Cart from "./pages/Cart";
+import SideDrawer from "./components/drawer/SideDrawer";
+import Checkout from "./pages/Checkout";
 // render app
 const App = () => {
   const dispatch = useDispatch();
@@ -70,6 +72,7 @@ const App = () => {
     <React.Fragment>
       <Header />
       <ToastContainer />
+      <SideDrawer />
       <Switch>
         <Route exact path="/" component={Home} />
         <Route exact path="/register" component={Register} />
@@ -100,6 +103,7 @@ const App = () => {
         <Route exact path="/sub/:slug" component={SubHome} />
         <Route exact path="/shop" component={Shop} />
         <Route exact path="/cart" component={Cart} />
+        <Route exact path="/checkout" component={Checkout} />
       </Switch>
     </React.Fragment>
   );

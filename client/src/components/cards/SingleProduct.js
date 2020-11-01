@@ -51,6 +51,12 @@ const SingleProduct = ({ product, onStarClick, star }) => {
         payload: unique,
       });
 
+      // set drawer
+      dispatch({
+        type: "SET_VISIBLE",
+        payload: true,
+      });
+
       // tooltip
       setTooltip("Added");
     }
