@@ -1,7 +1,7 @@
 /** @format */
 
 import React, { useState } from "react";
-import { Menu } from "antd";
+import { Menu, Badge } from "antd";
 import {
   AppstoreOutlined,
   UserOutlined,
@@ -20,7 +20,7 @@ const { SubMenu } = Menu;
 
 const Header = () => {
   const dispatch = useDispatch();
-  let { user } = useSelector((state) => ({ ...state }));
+  let { user, cart } = useSelector((state) => ({ ...state }));
   let history = useHistory();
   const [current, setCurrent] = useState("home");
 
@@ -43,6 +43,13 @@ const Header = () => {
       </Menu.Item>
       <Menu.Item key="shop" icon={<ShoppingOutlined />}>
         <Link to="/shop">Shop</Link>
+      </Menu.Item>
+      <Menu.Item key="cart" icon={<ShoppingOutlined />}>
+        <Link to="/cart">
+          <Badge count={cart.length} offset={[9, 0]}>
+            Cart
+          </Badge>
+        </Link>
       </Menu.Item>
 
       {user && (
