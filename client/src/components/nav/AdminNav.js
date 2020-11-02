@@ -12,7 +12,12 @@ function AdminNav() {
         </li>
         <li className="nav-item">
           <Link className="nav-link" to="/admin/product">
-            Product
+            Create Product
+          </Link>
+        </li>
+        <li className="nav-item">
+          <Link className="nav-link" to="/admin/coupon">
+            Coupons
           </Link>
         </li>
         <li className="nav-item">
