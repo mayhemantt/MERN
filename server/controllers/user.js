@@ -90,7 +90,7 @@ exports.applyCouponToUserCart = async (req, res) => {
     .populate("products.product", "_id title price")
     .exec();
 
-  console.log("cartTotal", cartTotal, "discount%", validCoupon.discount);
+  console.log("cartTotal", cartTotal, "discount", validCoupon.discount);
 
   // calculate the total after discount
   let totalAfterDiscount = (
@@ -102,7 +102,7 @@ exports.applyCouponToUserCart = async (req, res) => {
     { orderdBy: user._id },
     { totalAfterDiscount },
     { new: true }
-  );
+  ).exec();
 
   res.json(totalAfterDiscount);
 };
