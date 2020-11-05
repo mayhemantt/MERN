@@ -10,6 +10,7 @@ const {
   emptyCart,
   saveAddress,
   applyCouponToUserCart,
+  createOrder,
 } = require("../controllers/user");
 
 // router.get("/user", (req, res) => {
@@ -24,4 +25,6 @@ router.delete("/user/cart", authCheck, emptyCart); // empty cart
 
 router.post("/user/address", authCheck, saveAddress);
 router.post("/user/cart/coupon", authCheck, applyCouponToUserCart);
+
+router.post("/user/order", authCheck, createOrder);
 module.exports = router;
